@@ -62,7 +62,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserBasic> implements UserS
 
 	@Override
 	public List<UserBasic> selectUserByUserPick(UserPick userPick) {
-		return userBasicMapper.selectUserByUserPick(userPick);
+		List<UserBasic> list=userBasicMapper.selectUserByUserPick(userPick);
+		System.out.println(list.toString());
+		return list;
 	}
 
 	@Override

@@ -120,23 +120,34 @@ function searchUser() {
                 $("#dayLover").empty();
                 $("#dayLover").append("<ul id='flexiselDemo3'>");
                 $("#flexiselDemo3").append("<li id='page1'></li>");
-                $("#flexiselDemo3").append("<li id='page2'></li>")
-               /// $("#page1").empty();$("#page2").empty();
-                for (i = 0; i < 8; i++) {
+                $("#flexiselDemo3").append("<li id='page2'></li>");
+               /// $("#page1").empty();$("#page2").empty()
+            if(data.length<8){
+                for (i = 0; i < data.length; i++) {
+                    var id=data[i].id;
+                    var photo=data[i].photo;
+                    var nickname=data[i].nickname;
+                    var vip=data[i].vip;
+                    var star=data[i].star;
+                    var age=data[i].age;
+                    var workplace=data[i].workplace;
+                    var height=data[i].height;
+                    var salary=data[i].salary;
+                    var signature=data[i].userDetail.signature
                     $("#page1").append("<div class='col-md-3 biseller-column'>" +
-                        "                                <a href='"+contextPath+"profile/"+data[i].id+"'>" +
+                        "                                <a href='"+contextPath+"profile/"+id+"'>" +
                         "                                    <div class='profile-image'>" +
-                        "                                        <img src='"+contextPath+"file?path="+data[i].photo+"' class='img-responsive'"+
-                                                                    "style='width: 265px;height: 190px;' alt='profile image'/>" +
+                        "                                        <img src='"+contextPath+"file?path="+photo+"' class='img-responsive'"+
+                        "style='width: 265px;height: 190px;' alt='profile image'/>" +
                         "                                        <div class='agile-overlay'>" +
-                        "                                            <h4>" + data[i].nickname +
-                        "                                                <img  src='"+contextPath+"images/vip"+(data[i].vip ? "" : "-grey")+".png' class='snap-flag'/>" +
-                        "                                                <img src='" + contextPath + "images/star-0" + (data[i].star ? "" : "-grey") + ".png' class='flag'>" +
+                        "                                            <h4>" + nickname +
+                        "                                                <img  src='"+contextPath+"images/vip"+(vip ? "" : "-grey")+".png' class='snap-flag'/>" +
+                        "                                                <img src='" + contextPath + "images/star-0" + (star ? "" : "-grey") + ".png' class='flag'>" +
                         "                                            </h4>" +
                         "                                            <ul>" +
-                        "                                                <li><span>"+data[i].age+"</span>"+data[i].workplace+"</li>" +
-                        "                                                <li><span>"+data[i].height+"</span>"+data[i].salary+"</li>" +
-                        "                                                <li>"+data[i].userDetail.signature+"</li>" +
+                        "                                                <li><span>"+age+"</span>"+workplace+"</li>" +
+                        "                                                <li><span>"+height+"</span>"+salary+"</li>" +
+                        "                                                <li>"+signature+"</li>" +
                         "                                            </ul>" +
                         "                                        </div>" +
                         "                                    </div>" +
@@ -144,22 +155,65 @@ function searchUser() {
                         "                            </div>"
                     );
                 }
+            }else{
+                for (i = 0; i < 8; i++) {
+                    var id=data[i].id;
+                    var photo=data[i].photo;
+                    var nickname=data[i].nickname;
+                    var vip=data[i].vip;
+                    var star=data[i].star;
+                    var age=data[i].age;
+                    var workplace=data[i].workplace;
+                    var height=data[i].height;
+                    var salary=data[i].salary;
+                    var signature=data[i].userDetail.signature
+                    $("#page1").append("<div class='col-md-3 biseller-column'>" +
+                        "                                <a href='"+contextPath+"profile/"+id+"'>" +
+                        "                                    <div class='profile-image'>" +
+                        "                                        <img src='"+contextPath+"file?path="+photo+"' class='img-responsive'"+
+                        "style='width: 265px;height: 190px;' alt='profile image'/>" +
+                        "                                        <div class='agile-overlay'>" +
+                        "                                            <h4>" + nickname +
+                        "                                                <img  src='"+contextPath+"images/vip"+(vip ? "" : "-grey")+".png' class='snap-flag'/>" +
+                        "                                                <img src='" + contextPath + "images/star-0" + (star ? "" : "-grey") + ".png' class='flag'>" +
+                        "                                            </h4>" +
+                        "                                            <ul>" +
+                        "                                                <li><span>"+age+"</span>"+workplace+"</li>" +
+                        "                                                <li><span>"+height+"</span>"+salary+"</li>" +
+                        "                                                <li>"+signature+"</li>" +
+                        "                                            </ul>" +
+                        "                                        </div>" +
+                        "                                    </div>" +
+                        "                                </a>" +
+                        "                            </div>"
+                    );
+                }
+                for (i = 8; i < data.length; i++) {
+                    var id=data[i].id;
+                    var photo=data[i].photo;
+                    var nickname=data[i].nickname;
+                    var vip=data[i].vip;
+                    var star=data[i].star;
+                    var age=data[i].age;
+                    var workplace=data[i].workplace;
+                    var height=data[i].height;
+                    var salary=data[i].salary;
+                    var signature=data[i].userDetail.signature
 
-                for (i = 8; i < 16; i++) {
                     $("#page2").append("<div class='col-md-3 biseller-column'>" +
-                        "                                <a href='"+contextPath+"profile/"+data[i].id+"'>" +
+                        "                                <a href='"+contextPath+"profile/"+id+"'>" +
                         "                                    <div class='profile-image'>" +
-                        "                                        <img src='"+contextPath+"file?path="+data[i].photo+"' class='img-responsive'" +
-                                                                        "style='width: 265px;height: 190px;' alt='profile image'/>" +
+                        "                                        <img src='"+contextPath+"file?path="+photo+"' class='img-responsive'" +
+                        "style='width: 265px;height: 190px;' alt='profile image'/>" +
                         "                                        <div class='agile-overlay'>" +
-                        "                                            <h4>" + data[i].nickname +
-                        "                                                <img  src='"+contextPath+"images/vip"+(data[i].vip ? "" : "-grey")+".png' class='snap-flag'/>" +
-                        "                                                <img src='" + contextPath + "images/star-0" + (data[i].star ? "" : "-grey") + ".png' class='flag'>" +
+                        "                                            <h4>" + nickname +
+                        "                                                <img  src='"+contextPath+"images/vip"+(vip ? "" : "-grey")+".png' class='snap-flag'/>" +
+                        "                                                <img src='" + contextPath + "images/star-0" + (star ? "" : "-grey") + ".png' class='flag'>" +
                         "                                            </h4>" +
                         "                                            <ul>" +
-                        "                                                <li><span>"+data[i].age+"</span>"+data[i].workplace+"</li>" +
-                        "                                                <li><span>"+data[i].height+"</span>"+data[i].salary+"</li>" +
-                        "                                                <li>"+data[i].userDetail.signature+"</li>" +
+                        "                                                <li><span>"+age+"</span>"+workplace+"</li>" +
+                        "                                                <li><span>"+height+"</span>"+salary+"</li>" +
+                        "                                                <li>"+signature+"</li>" +
                         "                                            </ul>" +
                         "                                        </div>" +
                         "                                    </div>" +
@@ -167,6 +221,10 @@ function searchUser() {
                         "                            </div>"
                     );
                 }
+            }
+
+
+
 
                 flexisel();
 

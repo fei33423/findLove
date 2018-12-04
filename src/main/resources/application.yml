@@ -8,10 +8,10 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     dbcp2:
       driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql:///findlover?useSSL=false
-#       url: jdbc:mysql://127.0.0.1:3306/findlover?useSSL=false
+#      url: jdbc:mysql:///findlover?useSSL=false&characterEncoding=utf8
+      url: jdbc:mysql://39.106.24.9:3306/findlover?useSSL=false&characterEncoding=utf8
       username: root
-      password: 512023
+      password: 123456
       initial-size: 1
       min-idle: 1
       max-total: 2

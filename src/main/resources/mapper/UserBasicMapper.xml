@@ -26,7 +26,7 @@
     <!--<result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />-->
     <!--</resultMap>-->
 
-    <resultMap id="userSearch" type="UserBasic">
+    <resultMap id="userSearch" type="com.hpe.findlover.model.UserBasic">
         <id column="userId" property="id" jdbcType="INTEGER" />
         <result column="nickname" property="nickname" jdbcType="VARCHAR" />
         <result column="photo" property="photo" jdbcType="VARCHAR" />
@@ -49,7 +49,7 @@
         education, workplace, salary, live_condition, authority, status, code, reg_time
     </sql>
 
-    <select id="selectByEmail" resultType="UserBasic">
+    <select id="selectByEmail" resultType="com.hpe.findlover.model.UserBasic">
         SELECT
         <include refid="Base_Column_List"/>
         <include refid="Base_Column_List"/>
@@ -57,7 +57,7 @@
         WHERE email=#{email}
     </select>
 
-    <select id="selectAllByIdentity" resultType="UserBasic">
+    <select id="selectAllByIdentity" resultType="com.hpe.findlover.model.UserBasic">
         SELECT ub.id,ub.email,ub.nickname,ub.tel,ub.photo,ub.status
         FROM user_basic AS ub LEFT OUTER JOIN user_asset AS ua
         ON ub.id=ua.id
@@ -70,7 +70,7 @@
         </if>
     </select>
 
-    <select id="selectStarUser" resultType="UserBasic">
+    <select id="selectStarUser" resultType="com.hpe.findlover.model.UserBasic">
         SELECT ub.*
         from user_basic as ub LEFT OUTER JOIN user_asset as ua
         ON ub.id=ua.id
@@ -88,7 +88,7 @@
 
     <select id="selectUsersByIds" resultMap="userSearch">
         SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,
-        signature,
+        user_detail.signature,
         vip_deadline,star_deadline
         FROM user_basic
         LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
@@ -105,7 +105,7 @@
     <select id="selectUserBySexualAndWorkProvince" resultMap="userSearch">
         SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,salary,
         YEAR(NOW())-YEAR(birthday) age,
-        signature,
+        user_detail.signature,
         vip_deadline,star_deadline
         FROM user_basic
         LEFT OUTER JOIN user_life ON user_basic.id=user_life.id
@@ -122,11 +122,11 @@
     </select>
 
 
-    <select id="selectUserByUserPick" resultMap="userSearch" >
-        SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,salary,birthday,
+    <select id="selectUserByUserPick" parameterType="com.hpe.findlover.model.UserPick" resultMap="userSearch" >
+        SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,salary,
         YEAR(NOW())-YEAR(birthday) age,
-        signature,
-        vip_deadline,star_deadline
+        user_detail.signature,
+        user_asset.vip_deadline,user_asset.star_deadline
         FROM user_basic
         LEFT OUTER JOIN user_life ON user_basic.id=user_life.id
         LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
@@ -189,8 +189,8 @@
     <select id="selectUserBySearch" resultMap="userSearch">
         SELECT height,user_basic.id userId,user_basic.sex,nickname,photo,workplace,birthday,marry_status,salary,birthday,
         YEAR(NOW())-YEAR(birthday) age,
-        signature,
-        vip_deadline,star_deadline
+        user_detail.signature,
+        user_asset.vip_deadline,user_asset.star_deadline
         FROM user_basic
         LEFT OUTER JOIN user_life ON user_basic.id=user_life.id
         LEFT OUTER JOIN user_detail ON user_detail.id=user_basic.id
